@@ -1,4 +1,4 @@
-package test
+package contract_test
 
 import (
 	"path/filepath"

@@ -1,8 +1,10 @@
 .POSIX:
+.PHONY: *
 
-filter=.
+filter = .
 
-default: test
+default: smoke contract integration e2e
 
-test:
-	gotestsum --format testname -- -timeout 30m -run "${filter}"
+
+smoke contract integration e2e:
+	gotestsum --format testname -- -timeout 30m ./$@ -run "${filter}"

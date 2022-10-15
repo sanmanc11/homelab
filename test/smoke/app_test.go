@@ -1,4 +1,4 @@
-package test
+package smoke_test
 
 import (
 	"crypto/tls"
@@ -10,19 +10,21 @@ import (
 	"github.com/gruntwork-io/terratest/modules/k8s"
 )
 
-func TestSmoke(t *testing.T) {
+func TestAppEndpoint(t *testing.T) {
 	t.Parallel()
 
 	var mainApps = []struct {
 		name      string
 		namespace string
+		path      string
 	}{
-		{"argocd-server", "argocd"},
-		{"gitea", "gitea"},
-		{"grafana", "grafana"},
-		{"hajimari", "hajimari"},
-		{"registry-docker-registry", "registry"},
-		{"tekton-dashboard", "tekton-pipelines"},
+		{"argocd-server", "argocd", "/healthz"},
+		{"dex", "dex", "/healthz"},
+		{"gitea", "gitea", "/"},
+		{"grafana", "grafana", "/healthz"},
+		{"hajimari", "hajimari", "/"},
+		{"registry-docker-registry", "registry", "/"},
+		{"tekton-dashboard", "tekton-pipelines", "/"},
 	}
 
 	for _, app := range mainApps {
@@ -46,7 +48,7 @@ func TestSmoke(t *testing.T) {
 			// Test the endpoint, this will only fail if we timeout waiting for the service to return a 200 response
 			http_helper.HttpGetWithRetryWithCustomValidation(
 				t,
-				fmt.Sprintf("https://%s", ingress.Spec.Rules[0].Host),
+				fmt.Sprintf("https://%s%s", ingress.Spec.Rules[0].Host, app.path),
 				&tlsConfig,
 				30,
 				60*time.Second,

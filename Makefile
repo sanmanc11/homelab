@@ -21,7 +21,7 @@ external:
 	make -C external
 
 smoke-test:
-	make -C test filter=Smoke
+	make -C test smoke
 
 post-install:
 	@./scripts/hacks
