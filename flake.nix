@@ -23,9 +23,11 @@
             docker-compose_1 # TODO upgrade to version 2
             git
             go
+            go-jsonnet
             gotestsum
             iproute2
             jq
+            jsonnet-bundler
             k9s
             kube3d
             kubectl
