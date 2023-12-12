@@ -7,7 +7,7 @@ gitea:
       hajimari.io/appName: Gitea
       hajimari.io/icon: git
     hosts:
-      - host: &host git.olmpus-net.com
+      - host: &host git.khuedoan.com
         paths:
           - path: /
             pathType: Prefix
@@ -21,7 +21,7 @@ gitea:
     config:
       server:
         LANDING_PAGE: explore
-        ROOT_URL: https://git.olmpus-net.com
+        ROOT_URL: https://git.khuedoan.com
       webhook:
         ALLOWED_HOST_LIST: private
   persistence:
