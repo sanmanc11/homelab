@@ -15,7 +15,7 @@ data:
     #
     # https://myheadscale.example.com:443
     #
-    server_url: https://headscale.khuedoan.com
+    server_url: https://headscale.olympus-net.com
 
     # Address to listen to / bind to on the server
     #
